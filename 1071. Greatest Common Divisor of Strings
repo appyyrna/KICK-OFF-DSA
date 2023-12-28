@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) 
+    {
+        int k, m, n;
+        string a, b, c;
+        if (str1 + str2 != str2 + str1) return "";
+        if (str1.length() > str2.length())  {   a = str1;   b =str2;    }
+        else if (str1.length() < str2.length())   {   a = str2;   b= str1;    }
+        else {  a = str1;   return a;   }
+        k = a.length();     m = b.length();
+        for (int i = 1; i < k; i++)
+            if (k % i == 0 && m % i == 0)   n = i;
+        for (int i = 0; i < n; i++) c += b[i];
+        return c;     
+    }
+};
