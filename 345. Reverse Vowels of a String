@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        char c;
+        int k = 0, m = s.length()-1;
+        while (k < m)
+        {
+            k = s.find_first_of("aeiouAEIOU", k);
+            m = s.find_last_of("aeiouAEIOU", m);
+            if (k < m)
+            {   c = s[k];   s[k] = s[m];    s[m] = c;   }
+            k++;    m--;
+        }
+        return s;
+    }
+};
