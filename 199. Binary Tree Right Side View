@@ -1,12 +1,26 @@
 class Solution {
  public:
-  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    if (root == nullptr || root == p || root == q)
-      return root;
-    TreeNode* left = lowestCommonAncestor(root->left, p, q);
-    TreeNode* right = lowestCommonAncestor(root->right, p, q);
-    if (left != nullptr && right != nullptr)
-      return root;
-    return left == nullptr ? right : left;
+  vector<int> rightSideView(TreeNode* root) {
+    if (root == nullptr)
+      return {};
+
+    vector<int> ans;
+    queue<TreeNode*> q{{root}};
+
+    while (!q.empty()) {
+      const int size = q.size();
+      for (int i = 0; i < size; ++i) {
+        TreeNode* node = q.front();
+        q.pop();
+        if (i == size - 1)
+          ans.push_back(node->val);
+        if (node->left)
+          q.push(node->left);
+        if (node->right)
+          q.push(node->right);
+      }
+    }
+
+    return ans;
   }
 };
